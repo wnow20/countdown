@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "store.js": "^1.0.4"
+  },
+  "name": "countdown",
+  "description": "CountDown",
+  "version": "0.0.1",
+  "main": "countdown.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wnow20/countdown.git"
+  },
+  "keywords": [
+    "countdown",
+    "localStorage"
+  ],
+  "author": "wnow20 <wnow20@gmail.com> (http://zcoder.cn)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wnow20/countdown/issues"
+  },
+  "homepage": "https://github.com/wnow20/countdown#readme"
+}
