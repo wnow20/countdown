@@ -1,15 +1,17 @@
-var store = require('store.js');
-
 'use strict'
+
+var store = require('store');
+var _ = require('lodash');
 
 var CountDown = function (options) {
 	this.options = this.getOptions(options);
+    this.init();
 }
 
-CountDown.OPTIONS = {
+CountDown.DEFAULTS = {
 	primaryKey: '', // 默认为当前 location.pathname
-    callback: $.noop, // 倒计时完毕触发的回调
-    tickCallback: $.noop, // 每秒触发的回调
+    callback: _.noop, // 倒计时完毕触发的回调
+    tickCallback: _.noop, // 每秒触发的回调
     second: 60 // 倒计时秒数，默认为60秒
 };
 
@@ -17,13 +19,13 @@ CountDown.prototype.getDefaults = function () {
 	return CountDown.DEFAULTS
 }
 
-Tooltip.prototype.getOptions = function (options) {
-	options = $.extend({}, this.getDefaults(), options)
+CountDown.prototype.getOptions = function (options) {
+	options = _.extend({}, this.getDefaults(), options)
 
 	return options
 }
 /**
- * 初始化倒计时
+ * initial or reset CountDown
  */
 CountDown.prototype.init = function () {
     var self = this;
@@ -36,6 +38,9 @@ CountDown.prototype.init = function () {
     self.second = store.get('primaryKey') || self.options.second;
 };
 
+/**
+ * start count down
+ */
 CountDown.prototype.start = function () {
 	var self = this;
     var primaryKey = this.options.primaryKey;
@@ -45,6 +50,7 @@ CountDown.prototype.start = function () {
     // 使用setInterval执行倒计时
     self.timer = window.setInterval(function () {
         self.second--;
+
         if (self.second <= 0) {
             self.clear();
             // 倒计时完成，执行callback回调
@@ -77,4 +83,4 @@ CountDown.prototype.clear = function () {
     }
 };
 
-modules.export = CountDown;
+module.exports = CountDown;
